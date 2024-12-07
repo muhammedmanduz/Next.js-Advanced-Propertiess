@@ -24,6 +24,7 @@
 - Server Component kullanırsak render yöntemi SSR olur
 
 - Client side rendering yöntemi uygulanan bir sayfaya girdiğimizde `js`  kodu ve `boş html dosyası`  indiririz. İndirilen js kodu kullanıcının bilgisayarında çalışır ve html dosyasını doldurur.
+- Client componentlarda async olamaz
 
 - Server side rendering yöntemi uygulanan bir sayfaya girdiğimizde, js kodu `sunucuda` çalışır ve `html` sunucuda oluşturulur. Client ise sadece sunucudan html'i indirip ekrana basar.
 
@@ -49,3 +50,36 @@
 - Cache özelliği sayesinde api'dan gelen veriyi birden çok component'da kullanıcaksak redux vb. yapılara gerek duymadan bütün componentlarda api isteğini atarız bunlardan sadece biri gerçekten api'a gidereken diğer componentlar ilk giden istekten gelen önbelleğe alınan cevabı kullanılır
 
 - Varsayılan olarak bütün api isteklerinden gelen cevaplar cache'de tutulur. Ama çektiğimiz veriye göre bunu değiştirmek isteyebilirirz. - Örn: Bir sosyal medya uygulmasının anasayfasında bu cache özelliğini kullanırsak her sayfaya yenilendiğinde aynı içeriği görürüz. Bundan dolayı api isteğini atarken veri cache tutulmalı mı kararını verebiliyoruz.
+
+# Font
+- Nextjs, içerisinde fontlar ile alakalı bazı optimizasyonlara sahiptir. Projede kullanılmayan font varyantlarını (kalınlık / italik) oto. olarak algılar ve import etmez
+
+- Font'ları daha seo dostu hale getirir.
+
+- Yerel fontları yönetmek daha kolaydır.
+
+# Nextjs Fonksiyonları
+
+## useRouter
+
+- Client component'larda fonksiyon içerersinde yönlendirme yapmayaya yarar.
+
+ - - back() | forward() | refresh() | push() methodlarına sahiptir
+
+- ## redirect
+- server component'larda yönlendirme yapmak için kullanılır.
+
+- Kullanıcının yetkisine bağlı olarak girmemesi / erişmemesi gereken bir sayfa varsa, o sayfadan dışarıya yönlendirme yapmak için kullanılır.
+
+## notFound
+- sadece server componentlarda kullanılabilir.
+- 404 sayfasına yönlendirir
+
+## usePathname
+- sadece client componentlarda kullanılabilir.
+
+- Kullanıcnın bulunduğu yolu alır
+
+## useSearchParams
+- sadece client componentlarda kullanılabilir.
+- urldeki arama parametrelerini almak için kullanılır

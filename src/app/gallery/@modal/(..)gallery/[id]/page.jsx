@@ -1,11 +1,13 @@
 "use client";
 import { data } from "@/app/constants";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { LuExpand } from "react-icons/lu";
 
+//client componentlarda async olamaz
 const DetailPreview = ({ params }) => {
-  const { id } = params;
+  //client componentlarda parametrelere  erişme yöntemi
+  const { id } = useParams();
 
   const item = data.find((i) => i.id === id);
 
@@ -26,6 +28,10 @@ const DetailPreview = ({ params }) => {
   const refresh = () => {
     window.location.reload();
   };
+
+  ///sadece client componentlarda ,urldeki yolu almak amacıyla kullanılır
+  const path = usePathname();
+  console.log(path);
 
   return (
     <div className="fixed inset-0 bg-black/60  backdrop-blur grid place-items-center pb-5">

@@ -1,15 +1,25 @@
-import localFont from "next/font/local";
+import { localFont } from "next/font/local";
 import "./assets/globals.css";
-import Header
- from "./components/header";
-const geistSans = localFont({
+import Header from "./components/header";
+
+//googleFont tanımlama
+import { Poppins } from "next/font/google";
+
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+});
+
+//Local font tanımlama
+export const geistSans = localFont({
   src: "./assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+  variable: "--font-geist",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+
+export const jedi = localFont({
+  src: "./assets/fonts/Starjedi.ttf",
+  variable: "--font-jedi",
   weight: "100 900",
 });
 
@@ -22,9 +32,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+        style={poppins.style}
+        className={`${poppins.className}  antialiased bg-black text-white`}
       >
-        <Header/>
+        <Header />
         {children}
       </body>
     </html>

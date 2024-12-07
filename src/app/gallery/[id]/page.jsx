@@ -1,6 +1,7 @@
 import { data } from "@/app/constants";
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 const Page = async ({ params }) => {
   //url deki parametreye eriş
@@ -8,6 +9,9 @@ const Page = async ({ params }) => {
 
   //url deki parametreye karşılık  gelen dizi elemanın al
   const item = data.find((i) => i.id === id);
+
+  //elemanı bulunmazsa  404 sayfasına yönlendir
+  if(!item) notFound();
 
   return (
     <div className="container mx-auto my-20 text-3xl">
@@ -25,6 +29,16 @@ const Page = async ({ params }) => {
           alt={item.name}
           className="w-full object-cover aspect-square rounded-md"
         />
+
+        <div className="my-5">
+          <h3 className="text-lg">Fotoğrafçı</h3>
+          <p>{item.photographer}</p>
+        </div>
+
+        <div className="my-5">
+          <h3 className="text-lg">Lokasyon</h3>
+          <p>{item.location}</p>
+        </div>
       </div>
     </div>
   );
